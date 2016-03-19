@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["FixedSizeBuffer","A fixed size buffer."],["GrowingBuffer","A buffer which will reallocate to fit the requested amount of data."]],"trait":[["Buffer","Trait all parser buffers implement."]]});

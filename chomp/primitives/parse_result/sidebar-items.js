@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["new","**Primitive:** Creates a new `ParseResult`."]]});

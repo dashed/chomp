@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Source","Manages a buffer and data source pair, enabling efficient parsing from a streaming source."]]});

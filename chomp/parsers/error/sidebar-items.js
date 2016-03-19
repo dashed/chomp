@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Error","Common error for the basic Chomp parsers."]]});

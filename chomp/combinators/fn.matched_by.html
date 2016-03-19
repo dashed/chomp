@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `matched_by` fn in crate `chomp`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, matched_by">
+
+    <title>chomp::combinators::matched_by - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>chomp</a>::<wbr><a href='index.html'>combinators</a></p><script>window.sidebarCurrent = {name: 'matched_by', ty: 'fn', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content fn">
+<h1 class='fqn'><span class='in-band'>Function <a href='../index.html'>chomp</a>::<wbr><a href='index.html'>combinators</a>::<wbr><a class='fn' href=''>matched_by</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-2818' class='srclink' href='../../src/chomp/combinators/mod.rs.html#298-314' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub fn matched_by&lt;'a, I, T, E, F&gt;(i: <a class='struct' href='../../chomp/struct.Input.html' title='chomp::Input'>Input</a>&lt;'a, I&gt;, f: F) -&gt; <a class='struct' href='../../chomp/struct.ParseResult.html' title='chomp::ParseResult'>ParseResult</a>&lt;'a, I, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;'a [</a>I<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>, T)</a>, E&gt; <span class='where'>where T: 'a, F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>(<a class='struct' href='../../chomp/struct.Input.html' title='chomp::Input'>Input</a>&lt;'a, I&gt;) -&gt; <a class='struct' href='../../chomp/struct.ParseResult.html' title='chomp::ParseResult'>ParseResult</a>&lt;'a, I, T, E&gt;</span></pre><div class='docblock'><p>Returns the result of the given parser as well as the slice which matched it.</p>
+<pre class='rust rust-example-rendered'>
+<span class='kw'>use</span> <span class='ident'>chomp</span>::{<span class='ident'>parse_only</span>, <span class='ident'>matched_by</span>};
+<span class='kw'>use</span> <span class='ident'>chomp</span>::<span class='ident'>ascii</span>::<span class='ident'>decimal</span>;
+
+<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>parse_only</span>(<span class='op'>|</span><span class='ident'>i</span><span class='op'>|</span> <span class='ident'>matched_by</span>(<span class='ident'>i</span>, <span class='ident'>decimal</span>), <span class='string'>b&quot;123&quot;</span>), <span class='prelude-val'>Ok</span>((<span class='kw-2'>&amp;</span><span class='string'>b&quot;123&quot;</span>[..], <span class='number'>123u32</span>)));</pre>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "chomp";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

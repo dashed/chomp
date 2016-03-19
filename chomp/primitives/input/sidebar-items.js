@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["DEFAULT","Default (empty) input state."],["END_OF_INPUT","If set the current slice of input is the last one."]],"fn":[["new","**Primitive:** Creates a new input from the given state and buffer."]]});

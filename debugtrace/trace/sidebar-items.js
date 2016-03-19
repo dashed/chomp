@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Trace","Wrapper type containing a value and the backtrace to the address where it was wrapped."]]});
