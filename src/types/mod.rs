@@ -592,6 +592,18 @@ impl<I: Input, T, E> ParseResult<I, T, E> {
         }
     }
 
+    #[inline]
+    pub fn map_err2<V, F>(self, f: F) -> ParseResult<I, T, V>
+      where F: FnOnce(E, &I) -> V {
+        match self {
+            ParseResult(i, Ok(t))  => ParseResult(i, Ok(t)),
+            ParseResult(i, Err(e)) => {
+                let err = f(e, &i);
+                ParseResult(i, Err(err))
+            },
+        }
+    }
+
     /// Calls the function `f` with a reference of the contained data if the parser is in a success
     /// state.
     ///
