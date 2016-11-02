@@ -40,7 +40,7 @@
 //! # }
 //! ```
 
-use primitives::Guard;
+use primitives::{Guard, IntoInner};
 use types::{Buffer, Input};
 
 /// Trait for managing some kind of numbering over the parsed data.
@@ -119,7 +119,14 @@ impl<I: Input, N: Numbering<Token=I::Token>> InputPosition<I, N> {
         self.num.clone()
     }
 
-    pub fn into_inner(self) -> (I, N) {
+
+}
+
+impl<I: Input, N: Numbering<Token=I::Token>> IntoInner for InputPosition<I, N> {
+
+    type Inner = (I, N);
+
+    fn into_inner(self) -> Self::Inner {
         (self.input, self.num)
     }
 }
