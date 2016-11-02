@@ -118,6 +118,10 @@ impl<I: Input, N: Numbering<Token=I::Token>> InputPosition<I, N> {
     pub fn position(&self) -> N {
         self.num.clone()
     }
+
+    pub fn into_inner(self) -> (I, N) {
+        (self.input, self.num)
+    }
 }
 
 impl<I: Input, N: Numbering<Token=I::Token>> Input for InputPosition<I, N> {
