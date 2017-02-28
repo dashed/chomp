@@ -6,6 +6,7 @@ pub mod tendril;
 
 use primitives::{Guard, IntoInner};
 
+// TODO: ref: https://github.com/scala/scala-parser-combinators/blob/1.0.x/docs/Getting_Started.md
 #[derive(Debug)]
 pub enum Satisfy<E> {
     Satisfied(E),

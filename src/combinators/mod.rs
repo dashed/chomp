@@ -65,7 +65,20 @@ pub fn option<I: Input, T, E, F>(i: I, f: F, default: T) -> ParseResult<I, T, E>
 
     match f(i).into_inner() {
         (b, Ok(d))  => b.ret(d),
-        (b, Err(_)) => b.restore(m).ret(default),
+        (b, Err(err)) => {
+
+            let err: Satisfy<E> = err.into();
+
+            match err {
+                Satisfy::Satisfied(e) => {
+                    b.err(e)
+                },
+                Satisfy::NotSatisfied(_) => {
+                    b.restore(m).ret(default)
+                }
+            }
+
+        },
     }
 }
 
@@ -135,7 +148,20 @@ pub fn either<I, T, U, E, F, G>(i: I, f: F, g: G) -> ParseResult<I, Either<T, U>
 
     match f(i).into_inner() {
         (b, Ok(d))  => b.ret(Either::Left(d)),
-        (b, Err(_)) => g(b.restore(m)).map(Either::Right),
+        (b, Err(err)) => {
+
+            let err: Satisfy<E> = err.into();
+
+            match err {
+                Satisfy::Satisfied(e) => {
+                    b.err(e)
+                },
+                Satisfy::NotSatisfied(_) => {
+                    g(b.restore(m)).map(Either::Right)
+                }
+            }
+
+        },
     }
 }
 
@@ -184,9 +210,17 @@ pub fn choice<I, T, E, R>(mut i: I, parsers: R) -> ParseResult<I, T, E>
             match p(i).into_inner() {
                 (b, Ok(t))  => return b.ret(t),
                 (b, Err(e)) => {
-                    i   = b.restore(m);
-                    m   = i.mark();
-                    err = Some(e);
+                    let e: Satisfy<E> = e.into();
+                    match e {
+                        Satisfy::Satisfied(e) => {
+                            return b.err(e);
+                        },
+                        Satisfy::NotSatisfied(e) => {
+                            i   = b.restore(m);
+                            m   = i.mark();
+                            err = Some(e);
+                        }
+                    }
                 },
             }
         }
