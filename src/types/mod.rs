@@ -6,6 +6,18 @@ pub mod tendril;
 
 use primitives::{Guard, IntoInner};
 
+#[derive(Debug)]
+pub enum Satisfy<E> {
+    Satisfied(E),
+    NotSatisfied(E),
+}
+
+impl<T> From<T> for Satisfy<T> {
+    fn from(t: T) -> Satisfy<T> {
+        Satisfy::NotSatisfied(t)
+    }
+}
+
 /// The buffers yielded parsers consuming a sequence of the input.
 ///
 /// This could either be an owned type or a slice reference depending on the `Input`

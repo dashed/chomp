@@ -12,6 +12,7 @@ use either::Either;
 use types::{
     Input,
     ParseResult,
+    Satisfy
 };
 
 use primitives::{
@@ -95,7 +96,19 @@ pub fn or<I: Input, T, E, F, G>(i: I, f: F, g: G) -> ParseResult<I, T, E>
 
     match f(i).into_inner() {
         (b, Ok(d))  => b.ret(d),
-        (b, Err(_)) => g(b.restore(m)),
+        (b, Err(err)) => {
+
+            let err: Satisfy<E> = err.into();
+
+            match err {
+                Satisfy::Satisfied(e) => {
+                    b.err(e)
+                },
+                Satisfy::NotSatisfied(_) => {
+                    g(b.restore(m))
+                }
+            }
+        },
     }
 }
 
